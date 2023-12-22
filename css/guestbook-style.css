@@ -1,0 +1,122 @@
+/* ------------------------------------------------------------------- */
+.guestbook {
+    width: 100%;
+}
+
+.guestbook__container {
+    display: grid;
+    row-gap: 0.5em;
+}
+
+/* ------------------------------SEARCH------------------------------------- */
+.guestbook__search {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 2em 2em auto;
+    row-gap: 0.5em;
+    align-items: stretch;
+    justify-items: stretch;
+    border-bottom: 1px black solid;
+}
+.search {
+}
+.search__title {
+    display: grid;
+    align-items: center;
+    justify-items: stretch;
+    font-weight: bolder;
+    font-size: 1em;
+}
+.search__input {
+    display: inline-flex;
+    border: 1px solid black;
+    border-radius: 0.3em;
+    overflow: hidden;
+}
+.search__input_focused {
+    outline: #c8f3fa solid 0.2em;
+    background-color: #f7feff;
+}
+.search__input img {
+    width: 0.65em;
+    height: 0.65em;
+    margin: 0.3em;
+    align-self: center;
+}
+.search__input input {
+    font-size: 0.6em;
+    line-height: calc(200% / 0.6);
+    width: 100%;
+}
+.search__no-matches {
+    font-size: 0.6em;
+    color: red;
+    display: none;
+}
+
+/* -------------------------------REVIEWS------------------------------------ */
+.guestbook__reviews {
+    display: grid;
+    row-gap: 0.5em;
+}
+.reviews {
+}
+.reviews__title {
+    font-weight: bolder;
+    font-size: 1em;
+}
+.reviews__list {
+    font-size: 0.7em;
+    display: grid;
+    row-gap: 0.5em;
+}
+.reviews__name {
+    font-weight: bolder;
+}
+.reviews__review {
+    max-width: var(--max-width-of-review-for-proper-word-wrap);
+    word-wrap: break-word;
+}
+.reviews__see-more {
+    color: rgb(34, 94, 94);
+}
+
+/* ------------------------------MORE------------------------------------- */
+.guestbook__more-reviews {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2em;
+    align-items: center;
+    justify-items: stretch;
+    border-bottom: 1px black solid;
+    border-top: 1px black solid;
+}
+
+.more-reviews {
+}
+.more-reviews__title {
+    font-weight: bolder;
+    font-size: 1em;
+}
+
+/* -------------------------------WRITE------------------------------------ */
+.guestbook__write-review {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2em;
+    align-items: center;
+    justify-items: stretch;
+    border: 1px solid black;
+    border-radius: 0.3em;
+}
+.write-review {
+}
+.write-review__title {
+    font-size: 1em;
+}
+
+/* -------------------------------ARROW------------------------------------ */
+._arrov-placeholder {
+    justify-self: end;
+    transform: scale(1, 1.5);
+}

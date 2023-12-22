@@ -1,0 +1,175 @@
+/*This code is a common part of a CSS reset or normalization process. Let's break 
+down what each part of the code does:
+
+*: Selects all elements on the page.
+
+::before and ::after: Selects the before and after pseudo-elements for all elements.
+
+The rules within the curly braces apply the following styles:
+
+padding: 0;: Sets the padding of all elements to zero. Padding is the space inside 
+the element between the content and the border.
+
+margin: 0;: Sets the margin of all elements to zero. Margin is the space outside the 
+element.
+
+border: 0;: Sets the border of all elements to zero. This removes any default borders 
+that elements might have.
+
+box-sizing: border-box;: Sets the box-sizing property to border-box. This ensures that 
+padding and border are included in the element's total width and height. This can make 
+it easier to work with layouts, as the total dimensions of an element are more 
+predictable.
+
+This code is often used at the beginning of a stylesheet to create a consistent starting 
+point for styles, removing default spacing and styling that browsers might apply. It helps 
+to avoid cross-browser inconsistencies and gives developers more control over the styling 
+of their elements. Keep in mind that while CSS resets are common, there are different 
+approaches, and you might choose a reset based on your specific needs and preferences.*/
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+/*The CSS rule a { text-decoration: none; } is used to remove the default underline 
+styling on anchor (<a>) elements. When applied, this rule removes the underlines 
+typically associated with hyperlinks, making them appear without any decoration.
+
+When you apply this rule, it is a common practice for making links look cleaner or 
+for customizing link styles in a design. If you want to apply specific styles to 
+links on hover or visited states, you can add additional rules, like:
+a:hover {
+    //Styles for when the mouse is over the link
+}
+a:visited {
+    //Styles for visited links
+}*/
+a {
+    text-decoration: none;
+}
+/*list-style: none;: This property is used to remove the default list styling, which 
+includes markers for list items in unordered (ul) and ordered (ol) lists. Setting it 
+to none removes any bullets or numbers associated with list items.
+
+By using this rule, you can eliminate the default list markers, providing a way to 
+create custom styles for lists. This is commonly used in situations where the design 
+requires a specific look for lists that differs from the default browser styling.
+
+Keep in mind that when you remove the default list styling, you may need to provide 
+custom styling for list items if visual indicators are still desired. This CSS rule 
+is often used as a starting point for custom list styling in web development.*/
+ul,
+ol,
+li {
+    list-style: none;
+}
+/*It's a common practice to reset or remove the default outline styles for 
+interactive elements during these states. Here's a breakdown of what this code does:
+
+:active: This pseudo-class represents an element that is currently being activated 
+by the user, typically when a mouse button is being pressed or a key is activated.
+
+:hover: This pseudo-class represents an element that is being hovered over by the 
+mouse pointer.
+
+:focus: This pseudo-class represents an element that is currently in focus, such 
+as when a user clicks on an input field.
+
+The styles applied within the rule are:
+
+outline: 0;: This removes the default outline that is often applied by browsers to 
+focused or active elements. It's a common practice to reset this outline, especially 
+when developers want to provide their own custom styling for these states.
+
+outline-offset: 0;: This property sets the offset distance of an outline. By setting 
+it to 0, you are ensuring that there is no additional space outside the element for 
+the outline during these states.
+
+This kind of styling is often used to improve the visual appearance and customization 
+of interactive elements while taking into consideration accessibility and usability. 
+However, it's essential to ensure that the removal of outlines does not hinder 
+accessibility, as outlines are important for indicating focus, especially for users 
+who navigate with a keyboard or assistive technologies. If you use this kind of 
+styling, consider providing alternative visual indications of focus for accessibility 
+purposes.*/
+:active,
+:hover,
+:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+/*The CSS code img { vertical-align: top; } addresses a common issue related to the 
+vertical alignment of inline-level elements, particularly images (<img> elements) 
+within a line of text. The problem it solves is related to the default vertical 
+alignment behavior of inline elements.
+
+By default, inline-level elements like images are aligned to the baseline of the 
+text within the line. This default behavior can lead to unwanted spacing and 
+alignment issues, especially when images have different heights or when you want 
+images to align at the top with the surrounding text.
+
+Setting vertical-align: top; on the img selector changes the vertical alignment 
+of the images so that their top edges align with the top of the tallest element 
+in the line, typically text. This can be useful in situations where you want to 
+eliminate extra space above images and achieve a more visually consistent layout.
+*/
+img {
+    vertical-align: top;
+}
+/*This code targets the HTML heading elements (h1 through h6) and sets the 
+font-weight and font-size properties to inherit. Here's an explanation of what 
+each property does:
+
+font-weight: inherit;: This property sets the font weight to be the same as its 
+parent element. If the heading element is a child of another element with a specific 
+font weight, it will inherit that weight. If no specific font weight is applied to a 
+parent element, the default font weight will be used.
+
+font-size: inherit;: This property sets the font size to be the same as its parent 
+element. Similarly to font-weight, it inherits the font size from its parent. If no 
+specific font size is applied to a parent element, the browser's default font size 
+will be used.
+
+By using inherit, you ensure that the heading elements inherit these font properties 
+from their parent elements, providing a more consistent and predictable styling 
+throughout your document.
+
+It's worth noting that these rules might not have a noticeable effect if there are no 
+specific styles applied to the heading elements or their parent elements. The use of 
+inherit can be beneficial when you want to maintain a consistent styling hierarchy or 
+when you are working with nested elements and want the font properties to cascade down 
+from parent to child.*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+/*This code targets the HTML (html) and body (body) elements and applies the following 
+styles:
+
+height: 100%;: This sets the height of both the HTML and body elements to 100% of the 
+viewport height. This ensures that the HTML and body elements take up the full height 
+of the browser window or device screen.
+
+line-height: 1;: This sets the line height of text within the body to a unitless value 
+of 1. The line height defines the amount of space above and below inline elements. A 
+value of 1 typically means that the line height is equal to the font size of the text. 
+This can be used to create a more consistent and visually appealing layout, especially 
+when dealing with text.
+
+These styles are commonly used as part of a CSS reset or baseline styles in a web project. 
+The height: 100%; rule is often used to ensure that elements like the body take up the 
+full height of the viewport, and line-height: 1; is used to establish a consistent baseline 
+for text rendering.*/
+html,
+body {
+    height: 100%;
+    line-height: 1;
+}

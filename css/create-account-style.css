@@ -1,0 +1,27 @@
+/* ------------------------------------------------------------------- */
+.create-account {
+    width: 100%;
+}
+
+.create-account__container {
+    display: grid;
+    row-gap: 0.5em;
+}
+
+/* -----------------------------SUCCESS-------------------------------------- */
+.create-account__success {
+}
+
+/* -----------------------------PROBLEM-------------------------------------- */
+.create-account__problem {
+}
+
+/* -----------------------------FORM-------------------------------------- */
+.create-account__input-form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(5, 2em);
+    align-items: center;
+    justify-items: stretch;
+    row-gap: 0.5em;
+}

@@ -1,0 +1,23 @@
+/* ------------------------------------------------------------------- */
+.sign-in {
+    width: 100%;
+}
+
+.sign-in__container {
+    display: grid;
+    row-gap: 0.5em;
+}
+
+/* -----------------------------PROBLEM-------------------------------------- */
+.sign-in__problem {
+}
+
+/* -----------------------------FORM-------------------------------------- */
+.sign-in__input-form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 2em);
+    align-items: center;
+    justify-items: stretch;
+    row-gap: 0.5em;
+}

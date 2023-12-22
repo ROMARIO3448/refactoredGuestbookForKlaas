@@ -1,0 +1,27 @@
+/* ------------------------------------------------------------------- */
+.write-review {
+    width: 100%;
+}
+
+.write-review__container {
+    display: grid;
+    row-gap: 0.5em;
+}
+
+/* -----------------------------SUCCESS-------------------------------------- */
+.write-review__success {
+}
+
+/* -----------------------------PROBLEM-------------------------------------- */
+.write-review__problem {
+}
+
+/* -----------------------------FORM-------------------------------------- */
+.write-review__input-form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 2em);
+    align-items: center;
+    justify-items: stretch;
+    row-gap: 0.5em;
+}

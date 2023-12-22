@@ -1,0 +1,151 @@
+:root {
+    --default-font-size-in-vw: 6vw;
+    --tablet-font-size-in-vw: 5vw;
+    --small-laptops-and-tablets-font-size-in-vw: 4vw;
+    --laptops-and-desktops-font-size-in-vw: 3vw;
+    --large-screens-font-size-in-vw: 2vw;
+    --container-left-right-padding: 4vw;
+    --max-width-of-review-for-proper-word-wrap: 92vw;
+}
+
+/* Default font-size for mobile devices */
+body {
+    font-size: var(--default-font-size-in-vw);
+}
+
+/* Tablet Styles - 600px and above */
+@media (min-width: 600px) {
+    body {
+        font-size: var(--tablet-font-size-in-vw);
+    }
+}
+
+/* Small Laptops and Tablets - 768px and above */
+@media (min-width: 768px) {
+    body {
+        font-size: var(--small-laptops-and-tablets-font-size-in-vw);
+    }
+}
+
+/* Laptops and Desktops - 992px and above */
+@media (min-width: 992px) {
+    body {
+        font-size: var(--laptops-and-desktops-font-size-in-vw);
+    }
+}
+
+/* Large Screens - 1200px and above */
+@media (min-width: 1200px) {
+    body {
+        font-size: var(--large-screens-font-size-in-vw);
+    }
+}
+
+.wrapper {
+    /*min-height: 100%;: This sets the minimum height of the .wrapper 
+    element to be at least 100% of its containing element's height. If 
+    there is not enough content to fill the entire height, the element 
+    will still expand to at least 100% of the viewport height.*/
+    min-height: 100%;
+    /*The overflow: hidden; property is often used to prevent scrollbars 
+    from appearing when the content overflows the container.*/
+    overflow: hidden;
+}
+
+._container {
+    margin: 0px auto;
+    box-sizing: border-box;
+    padding-left: var(--container-left-right-padding);
+    padding-right: var(--container-left-right-padding);
+}
+
+/*---------------------------------COMMON-BLOCKS------------------------------*/
+
+/* -----------------------------SUCCESS-------------------------------------- */
+.success {
+    font-size: 0.6em;
+    border-radius: 0.3em;
+    line-height: calc(100% / 0.6);
+    border: 1px solid green;
+    box-shadow: 0em 0em 0.2em 0.2em greenyellow inset;
+    display: none;
+}
+.success__description {
+}
+
+/* -----------------------------PROBLEM-------------------------------------- */
+.problem {
+    font-size: 0.6em;
+    border-radius: 0.3em;
+    line-height: calc(100% / 0.6);
+    border: 1px solid red;
+    box-shadow: 0em 0em 0.2em 0.2em pink inset;
+    display: none;
+}
+.problem__title {
+    color: rgb(230, 0, 0);
+    font-weight: bolder;
+}
+.problem__description {
+}
+
+/* -----------------------------FORM-------------------------------------- */
+.input-form__title {
+    font-size: 1em;
+    font-weight: bolder;
+}
+.input-form input {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+.input-form__text-input {
+    border: 1px solid black;
+    border-radius: 0.3em;
+    font-size: 0.6em;
+    line-height: calc(200% / 0.6);
+}
+.input-form__text-input:focus {
+    outline: #c8f3fa solid 0.2em;
+    background-color: #f7feff;
+}
+.input-form__submit {
+    font-size: 0.6em;
+    line-height: calc(200% / 0.6);
+    background-color: #fed813;
+    border-radius: 0.3em;
+}
+.input-form__password-input {
+    display: inline-flex;
+    border: 1px solid black;
+    border-radius: 0.3em;
+    overflow: hidden;
+}
+.input-form__password-input_focused {
+    outline: #c8f3fa solid 0.2em;
+    background-color: #f7feff;
+}
+.input-form__password-input img {
+    width: 0.65em;
+    height: 0.65em;
+    margin: 0.3em;
+    align-self: center;
+    justify-self: end;
+}
+.input-form__password-input input {
+    font-size: 0.6em;
+    line-height: calc(200% / 0.6);
+    width: 100%;
+}
+
+/* -----------------------------REDIRECT-------------------------------------- */
+._redirect {
+    display: grid;
+    align-items: stretch;
+    justify-items: stretch;
+    text-align: center;
+    font-size: 0.7em;
+    line-height: calc(200% / 0.7);
+    border: 1px solid grey;
+    box-shadow: 0em 0em 0.2em 0.2em rgb(233, 233, 233);
+    border-radius: 0.3em;
+}
