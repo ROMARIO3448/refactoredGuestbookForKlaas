@@ -1,5 +1,19 @@
 import ProperFocusinFocusoutBehaviour from "./ProperFocusinFocusoutBehaviour.js";
 
+function fetchAndDisplayReviews() {
+    $.ajax({
+        url: "guestbook/echo_reviews",
+        method: "post",
+        dataType: "html",
+        success: function (data) {
+            $(".reviews__list").html(data);
+        },
+        error: function (error) {
+            console.log("Error:", error);
+        },
+    });
+}
+
 jQuery(function () {
     const properFocusinFocusoutBehaviour = new ProperFocusinFocusoutBehaviour(
         ".search__input",
@@ -17,4 +31,6 @@ jQuery(function () {
                 "http://localhost/refactoredGuestbookForKlaas/sign_in";
         }
     });
+
+    fetchAndDisplayReviews();
 });

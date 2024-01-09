@@ -24,11 +24,11 @@ class Model_Confirm_Email extends Model
         else
         {
             $guestbookuserwithouttoken = [];
-            $data["idForCookie"] = "";
+            $data["idForSession"] = "";
             foreach ($findOneResult as $key => $value) {
                 if($key=="_id")
                 {
-                    $data["idForCookie"] = $value;
+                    $data["idForSession"] = $value;
                 }
                 if($key=="token")
                 {

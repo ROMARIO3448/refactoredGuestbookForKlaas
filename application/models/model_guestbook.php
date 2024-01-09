@@ -1,31 +1,19 @@
 <?php
 class Model_Guestbook extends Model
 {
-    private function getLatestReviewsWithLimit($limit=5)
+    public function getLatestReviewsWithLimit($limit = 10)
     {
         $reviews = [];
-        $filter  = [];
+        $filter = ['review' => ['$exists' => true]];
         $options = ['sort' => ['timestamp' => -1], 'limit' => $limit];
         $guestbookusers = Model::getGuestbookUsersCollection();
         $findResults = $guestbookusers->find($filter, $options);
-        
-        foreach ($findResults as $innerDocument) 
-        {
-            $name = "";
-            $review = "";
-            foreach ($innerDocument as $key => $value) 
-            {
-                if($key=="name")
-                {
-                    $name = $value;
-                }
-                if($key=="review")
-                {
-                    $review = $value;
-                }
-            }
-            if($name&&$review)
-            {
+
+        foreach ($findResults as $innerDocument) {
+            $name = $innerDocument['name'] ?? '';
+            $review = $innerDocument['review'] ?? '';
+
+            if ($name && $review) {
                 $reviews[$name] = $review;
             }
         }
@@ -41,7 +29,6 @@ class Model_Guestbook extends Model
         {
             $_id = $options["_id"];
         }
-        $limit = $options["limit"];
         if($_id)
         {
             $findOneById = Model::findOneGuestbookUserById($_id);
@@ -49,11 +36,6 @@ class Model_Guestbook extends Model
             {
                 $data["isSuchUserExists"] = true;
             }
-            $data["reviews"] = $this->getLatestReviewsWithLimit($limit);
-        }
-        else
-        {
-            $data["reviews"] = $this->getLatestReviewsWithLimit($limit);
         }
         
         return $data;

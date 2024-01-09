@@ -2,6 +2,9 @@
 
 class Controller_Create_Account extends Controller
 {
+    public $model;
+    public $view;
+
 	function __construct()
 	{
 		$this->model = new Model_Create_Account();

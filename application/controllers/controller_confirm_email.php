@@ -2,6 +2,9 @@
 
 class Controller_Confirm_Email extends Controller
 {
+    public $model;
+    public $view;
+
 	function __construct()
 	{
 		$this->model = new Model_Confirm_Email();
@@ -29,7 +32,8 @@ class Controller_Confirm_Email extends Controller
             $data = $this->model->get_data($options);
             if($data["isVerificationPassed"])
             {
-                setcookie("_id", $data["idForCookie"], time() + 3600);
+                session_start();
+                $_SESSION["_id"] = $data["idForSession"];
                 $this->redirect();
             }
             else

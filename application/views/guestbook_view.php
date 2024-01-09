@@ -41,28 +41,7 @@
                     </div>
                     <div class="guestbook__reviews reviews">
                         <div class="reviews__title">Customer reviews</div>
-                        <div class="reviews__list">
-                            <?php
-                                if(isset($data["reviews"]))
-                                {
-                                    foreach($data["reviews"] as $name => $review)
-                                    {
-                                        if(strlen($review)>256)
-                                        {
-                                            $review = substr_replace($review, "", 256, -1);
-                                            echo "<div class='reviews__name'>".$name."</div>";
-                                            echo "<div class='reviews__review'>$review
-                                            <span class='reviews__see-more'>See more</span></div>";
-                                        }
-                                        else
-                                        {
-                                            echo "<div class='reviews__name'>".$name."</div>";
-                                            echo "<div class='reviews__review'>$review</div>";
-                                        }
-                                    }
-                                }
-                            ?>
-                        </div>
+                        <div class="reviews__list"></div>
                     </div>
                     <div class="guestbook__more-reviews more-reviews">
                         <div class="more-reviews__title">See more reviews</div>
@@ -71,6 +50,11 @@
                     <div class="guestbook__write-review write-review">
                         <div class="write-review__title">Write a review</div>
                         <div class="_arrov-placeholder">></div>
+                    </div>
+
+                     <!-- Div блок, который изначально скрыт -->
+                    <div id="hiddenDiv" style="display: none;">
+                        Этот блок был скрыт, но теперь виден!
                     </div>
                 </div>
             </div>

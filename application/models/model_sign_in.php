@@ -5,7 +5,7 @@ class Model_Sign_In extends Model
     private function sanitizeAndVerify($email, $password): array
     {
         $isSignInPassed = true;
-        $idForCookie = "";
+        $idForSession = "";
         $guestbookusers = Model::getGuestbookUsersCollection();
 
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -37,14 +37,14 @@ class Model_Sign_In extends Model
                 foreach ($findOneResult as $key => $value) {
                     if($key=="_id")
                     {
-                        $idForCookie = $value;
+                        $idForSession = $value;
                     }
                     if($key=="password")
                     {
                         $passwordFromDb = $value;
                     }
                 }
-                if($passwordFromDb == "" || $idForCookie == "")
+                if($passwordFromDb == "" || $idForSession == "")
                 {
                     $isSignInPassed = false;
                 }
@@ -57,7 +57,7 @@ class Model_Sign_In extends Model
                 }
             }
         }
-        return array("idForCookie" => $idForCookie, "isSignInPassed" => $isSignInPassed);
+        return array("idForSession" => $idForSession, "isSignInPassed" => $isSignInPassed);
     }
     public function get_data($options)
 	{
@@ -69,4 +69,3 @@ class Model_Sign_In extends Model
         return $data;
     }
 }
-

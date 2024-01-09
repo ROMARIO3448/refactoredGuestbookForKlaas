@@ -2,6 +2,11 @@
 
 class Controller_Write_Review extends Controller
 {
+    public $model;
+    public $view;
+    private $userName;
+    private $_id;
+
 	function __construct()
 	{
 		$this->model = new Model_Write_Review();
@@ -12,74 +17,92 @@ class Controller_Write_Review extends Controller
         header('Location: sign_in');
         exit();
     }
-	
-	function action_index($params)
-	{
-        $options = [];
-        $data = [];
-        $userName = "";
-        $listOfProblems = array("Please enter your review");
-        $problemDescription = "";
-        $successMessage = "Thank you for your review ";
-        $successDescription = "";
-        if(isset($_COOKIE["_id"]))
-        {
-            //если айди есть и он валидный, то устанавливаем его в опции
-            //+заодно записываем $userName
-            $userName = $this->model->isIdValid($_COOKIE["_id"]);
-            if($userName)
-            {
-                $options["_id"] = $_COOKIE["_id"];
-            }
-            else
-            {
-                //это занчит, что айди установлено, но либо такого айди нет в базе данных
-                //либо есть, но имени у него нет
-                $this->redirect();
-            }
-        }
-        else
-        {
-            //если айди не установлен, то дальнейший код бессмысленен. 
-            //Перенаправляем на страничку sign_in
-            $this->redirect();
-        }
-        //если нас не перенаправило, то это значит, что айди есть в куки и в БД и имя юзера тоже есть
 
-        //теперь если айди есть и оно валидно пришло время проверить нажал ли уже пользователь на
-        //кнопку submit, то есть попытался ли он уже оставить своё ревью
-        if(isset($_POST["submit"]))
-        {
-            if(!$_POST["review"])
-            {
-                //если ревью пустое, то добавляем описание проблемы
-                $problemDescription = $listOfProblems[0];
+    function action_handle_review()
+    {
+        $this->initializeUserData();
+
+        if (!Controller::isAjaxRequest()) {
+            Controller::sendForbiddenResponse();
+        }
+
+        $dataForResponse = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dataFromClient = $_POST;
+        
+            if (empty($dataFromClient)) {
+                $json = file_get_contents("php://input");
+                $dataFromClient = json_decode($json, true);
+            }
+
+            $options = [];
+            $data = [];
+            $successMessage = "Thank you for your review ";
+            if (empty($dataFromClient["review"])) {
+                $dataForResponse = [
+                    "problemDescription" => "Please enter your review",
+                ];
+                header("Content-Type: application/json");
+                echo json_encode($dataForResponse);
+                exit();
             }
             else
             {
-                //в противном случае передаёт дальнейшую обработку на Модель
-                //если нас ещё не заредиректило, то $options["_id"] уже должно было быть
-                //установлено, поэтому в опции передаём только ревью
-                $options["review"] = $_POST["review"];
+                $options["_id"] = $this->_id;
+                $options["review"] = $dataFromClient["review"];
                 $data = $this->model->get_data($options);
                 
                 if($data["problemDescription"])
                 {
-                    $problemDescription = $data["problemDescription"];
+                    $dataForResponse = [
+                        "problemDescription" => $data["problemDescription"],
+                    ];
                 }
-                //если при обновлении ревью в модели не возникло никаких проблем, то можно
-                //генерить ОписаниеУспеха. Просто ранее я не учёл, что пользователь мог только 
-                //попасть на страничку и ещё не нажать Submit и как итог какждый раз вроде бы и ошибок 
-                //не было, а вроде бы и ревью никакого не оставлял
                 else
                 {
-                    $successDescription = $successMessage.$userName;
+                    $dataForResponse = [
+                        "successDescription" => $successMessage.$this->userName,
+                    ];
                 }
+
+                header('Content-Type: application/json');
+                echo json_encode($dataForResponse);
+                exit();
             }
         }
-        //по итогу передаю как и описание проблемы так и описание успеха
-		$this->view->generate('write_review_view.php', 
-        array("problemDescription"=>$problemDescription, 
-        "successDescription"=> $successDescription)); 
+        else
+        {
+            //actions if $_SERVER['REQUEST_METHOD'] !== 'POST'
+        }
+    }
+
+    private function initializeUserData()
+    {
+        $this->userName = "";
+        $this->_id = "";
+        session_start();
+        if (isset($_SESSION["_id"])&&!empty($_SESSION["_id"]))
+        {
+            $this->_id = $_SESSION["_id"];
+            session_write_close();
+        }
+        else
+        {
+            session_write_close();
+            $this->redirect();
+        }
+
+        $this->userName = $this->model->getNameById($this->_id);
+        if (empty($this->userName)) {
+            $this->redirect();
+        }
+    }
+	
+	function action_index($params)
+	{
+        $this->initializeUserData();
+
+		$this->view->generate('write_review_view.php'); 
 	}
 }

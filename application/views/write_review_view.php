@@ -1,7 +1,3 @@
-<?php
-$successDescription = $data["successDescription"];
-$problemDescription = $data["problemDescription"];
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,13 +17,13 @@ $problemDescription = $data["problemDescription"];
             <div class="write-review">
                 <div class="write-review__container _container">
                     <div class="write-review__success success">
-                        <pre class="success__description"><?= $successDescription ?></pre>
+                        <pre class="success__description"></pre>
                     </div>
                     <div class="write-review__problem problem">
                         <div class="problem__title">There was a problem</div>
-                        <pre class="problem__description"><?= $problemDescription ?></pre>
+                        <pre class="problem__description"></pre>
                     </div>
-                    <form class="write-review__input-form input-form" action="write_review" method="post">
+                    <form class="write-review__input-form input-form" action="write_review/handle_review" method="post">
                         <div class="input-form__title">Write your review</div>
                         <input class="input-form__text-input" type="text" 
                         name="review" placeholder="Your review...">

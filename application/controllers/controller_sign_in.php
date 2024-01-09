@@ -2,6 +2,9 @@
 
 class Controller_Sign_In extends Controller
 {
+    public $model;
+    public $view;
+
 	function __construct()
 	{
 		$this->model = new Model_Sign_In();
@@ -44,9 +47,10 @@ class Controller_Sign_In extends Controller
                 $options["password"] = $password;
                 $data = $this->model->get_data($options);
 
-                if($data["isSignInPassed"]&&$data["idForCookie"])
-                {
-                    setcookie("_id", $data["idForCookie"], time() + 3600);
+                if($data["isSignInPassed"]&& $data["idForSession"]) {
+                    session_start();
+                    $_SESSION["_id"] = $data["idForSession"];
+                    session_write_close();
                     $this->redirect();
                 }
                 else
@@ -58,4 +62,3 @@ class Controller_Sign_In extends Controller
 		$this->view->generate('sign_in_view.php', array("problemDescription"=>$problemDescription));
     }
 }
-	

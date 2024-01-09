@@ -18,9 +18,7 @@ class ProblemSuccessDisplayManager {
     }
 
     displayIfContentExists(element, content) {
-        if (content.text()) {
-            element.css("display", "block");
-        }
+        element.css("display", content.text().trim() !== "" ? "block" : "none");
     }
 
     displayElementsBasedOnContent() {
